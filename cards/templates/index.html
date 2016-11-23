@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Candy Land</title>
+</head>
+<body onload="initDeck();">
+    <h1>Candy Land Cards Giver</h1>
+    <p>You can visit the Candy Land website by clicking <a href='http://candyland.com'>here</a>.</p>
+    <p>You are at the main page</p>
+    <p id='card_color'>Card color here</p>
+    <button onClick='getCard()'>Press me</button>
+    <script>
+     var cards = [];
+     var cur_index = 0;
+     function shuffle(a) {
+      var j, x, i;
+      for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+      }
+     }
+     function initDeck() {
+      for (var i=0; i<8; i++) {cards.push(["purple", "purple", "white"])}
+      for (var i=0; i<8; i++) {cards.push(["red", "red", "white"])}
+      for (var i=0; i<8; i++) {cards.push(["yellow", "yellow", "black"])}
+      for (var i=0; i<8; i++) {cards.push(["blue", "blue", "white"])}
+      for (var i=0; i<7; i++) {cards.push(["orange", "orange", "white"])}
+      for (var i=0; i<7; i++) {cards.push(["green", "green", "white"])}
+      for (var i=0; i<2; i++) {cards.push(["purple purple", "purple", "white"])}
+      for (var i=0; i<2; i++) {cards.push(["red red", "red", "white"])}
+      for (var i=0; i<2; i++) {cards.push(["yellow yellow", "yellow", "black"])}
+      for (var i=0; i<2; i++) {cards.push(["blue blue", "blue", "white"])}
+      for (var i=0; i<2; i++) {cards.push(["orange orange", "orange", "white"])}
+      for (var i=0; i<2; i++) {cards.push(["green green", "green", "white"])}
+      cards.push(["lollipop", "black", "white"]);
+      cards.push(["snowflake", "black", "white"]);
+      cards.push(["gumdrop", "black", "white"]);
+      cards.push(["peppermint stick", "black", "white"]);
+      cards.push(["plum", "black", "white"]);
+      cards.push(["peanut brittle", "black", "white"]);
+      shuffle(cards);
+     }
+     function getCard(){
+      if ( cur_index == cards.length ) { cur_index = 0; }
+      var ourCard=cards[cur_index];
+      document.getElementById('card_color').innerHTML=(cur_index+1) + "/" + cards.length + ": " + ourCard[0];
+      document.getElementById('card_color').style.color=ourCard[1];
+      document.getElementById('card_color').style.background=ourCard[2];
+      cur_index++;
+     }
+    </script>
+</body>
+</html>
