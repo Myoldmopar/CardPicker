@@ -3,54 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <title>Candy Land</title>
+    <style>
+        body {
+            font-size: 20px;
+        }
+    </style>
 </head>
-<body onload="initDeck();">
-    <h1>Candy Land Cards Giver</h1>
-    <p>You can visit the Candy Land website by clicking <a href='http://candyland.com'>here</a>.</p>
-    <p>You are at the main page</p>
-    <p id='card_color'>Card color here</p>
-    <button onClick='getCard()'>Press me</button>
-    <script>
-     var cards = [];
-     var cur_index = 0;
-     function shuffle(a) {
-      var j, x, i;
-      for (i = a.length; i; i--) {
-        j = Math.floor(Math.random() * i);
-        x = a[i - 1];
-        a[i - 1] = a[j];
-        a[j] = x;
-      }
-     }
-     function initDeck() {
-      for (var i=0; i<8; i++) {cards.push(["purple", "purple", "white"])}
-      for (var i=0; i<8; i++) {cards.push(["red", "red", "white"])}
-      for (var i=0; i<8; i++) {cards.push(["yellow", "yellow", "black"])}
-      for (var i=0; i<8; i++) {cards.push(["blue", "blue", "white"])}
-      for (var i=0; i<7; i++) {cards.push(["orange", "orange", "white"])}
-      for (var i=0; i<7; i++) {cards.push(["green", "green", "white"])}
-      for (var i=0; i<2; i++) {cards.push(["purple purple", "purple", "white"])}
-      for (var i=0; i<2; i++) {cards.push(["red red", "red", "white"])}
-      for (var i=0; i<2; i++) {cards.push(["yellow yellow", "yellow", "black"])}
-      for (var i=0; i<2; i++) {cards.push(["blue blue", "blue", "white"])}
-      for (var i=0; i<2; i++) {cards.push(["orange orange", "orange", "white"])}
-      for (var i=0; i<2; i++) {cards.push(["green green", "green", "white"])}
-      cards.push(["lollipop", "black", "white"]);
-      cards.push(["snowflake", "black", "white"]);
-      cards.push(["gumdrop", "black", "white"]);
-      cards.push(["peppermint stick", "black", "white"]);
-      cards.push(["plum", "black", "white"]);
-      cards.push(["peanut brittle", "black", "white"]);
-      shuffle(cards);
-     }
-     function getCard(){
-      if ( cur_index == cards.length ) { cur_index = 0; }
-      var ourCard=cards[cur_index];
-      document.getElementById('card_color').innerHTML=(cur_index+1) + "/" + cards.length + ": " + ourCard[0];
-      document.getElementById('card_color').style.color=ourCard[1];
-      document.getElementById('card_color').style.background=ourCard[2];
-      cur_index++;
-     }
-    </script>
+<body onload="initDeck();"
+      style="background-image:url('http://www.publicdomainpictures.net/pictures/140000/velka/rainbow-1445337690d8q.jpg');background-repeat: no-repeat;background-size: 100%;">
+<h1 style="text-align:center;">Candy Land Cards Giver</h1>
+<div style="text-align:center;"><p id='card_color' style="font-size:24px;">Card color here</p></div>
+<div style="text-align:center;">
+    <div style="border:1px solid #000;padding-top:5px;padding-left:5px;padding-right:5px;display:inline-block;background-color:white">
+        <div id='card_color_box'
+             style="display:inline-block;width:100px;height:100px;border:1px solid #000;background-size: 100% 100%"></div>
+        <div style="width:10px;display:inline-block;"></div>
+        <div id='card_color_box_2' style="width:100px;height:100px;border:1px solid #000;display:inline-block;"></div>
+    </div>
+</div>
+</br>
+<div style="text-align:center;">
+    <button onClick='getCard()' style="font-size:30px;">Draw a Card!</button>
+</div>
+<p style="text-align:center;">You can visit the Candy Land website by clicking <a href='http://candyland.com'
+                                                                                  target="_blank">here</a>.</p>
+<script>
+    var cards = [];
+    var cur_index = 0;
+    function shuffle(a) {
+        var j, x, i;
+        for (i = a.length; i; i--) {
+            j = Math.floor(Math.random() * i);
+            x = a[i - 1];
+            a[i - 1] = a[j];
+            a[j] = x;
+        }
+    }
+    function initDeck() {
+        // the deck is populated with items [name/color, doubled?, special?]
+        for (var i = 0; i < 8; i++) {
+            cards.push(["purple", false, false])
+        }
+        for (var i = 0; i < 8; i++) {
+            cards.push(["red", false, false])
+        }
+        for (var i = 0; i < 8; i++) {
+            cards.push(["yellow", false, false])
+        }
+        for (var i = 0; i < 8; i++) {
+            cards.push(["blue", false, false])
+        }
+        for (var i = 0; i < 7; i++) {
+            cards.push(["orange", false, false])
+        }
+        for (var i = 0; i < 7; i++) {
+            cards.push(["green", false, false])
+        }
+        for (var i = 0; i < 2; i++) {
+            cards.push(["purple", true, false])
+        }
+        for (var i = 0; i < 2; i++) {
+            cards.push(["red", true, false])
+        }
+        for (var i = 0; i < 2; i++) {
+            cards.push(["yellow", true, false])
+        }
+        for (var i = 0; i < 2; i++) {
+            cards.push(["blue", true, false])
+        }
+        for (var i = 0; i < 2; i++) {
+            cards.push(["orange", true, false])
+        }
+        for (var i = 0; i < 2; i++) {
+            cards.push(["green", true, false])
+        }
+        cards.push(["cupcake", false, true]);
+        cards.push(["ice_cream_cone", false, true]);
+        cards.push(["star", false, true]);
+        cards.push(["gingerbread_man", false, true]);
+        cards.push(["lollipop", false, true]);
+        cards.push(["popsicle", false, true]);
+        cards.push(["chocolate_swirl", false, true]);
+        shuffle(cards);
+    }
+    function getCard() {
+        if (cur_index == cards.length) {
+            cur_index = 0;
+        }
+        var ourCard = cards[cur_index];
+        var cardName = ourCard[0];
+        var isDoubled = ourCard[1];
+        var isSpecial = ourCard[2];
+        var first_color_box = document.getElementById('card_color_box')
+        if (first_color_box.hasChildNodes()) {
+            first_color_box.removeChild(first_color_box.childNodes[0])
+        }
+        if (isSpecial) {
+            document.getElementById('card_color').innerHTML = "Card #" + (cur_index + 1) + "/" + cards.length + ": SPECIAL! " + cardName;
+            document.getElementById('card_color_box').style.background = "white";
+            document.getElementById('card_color_box_2').style.background = "white";
+            var img = document.createElement("img");
+            switch (cardName) {
+                case "cupcake":
+                    img.setAttribute("src", "https://s-media-cache-ak0.pinimg.com/originals/c4/6c/6d/c46c6d2cecee6d19e71602599e28281b.jpg");
+                    break;
+                case "ice_cream_cone":
+                    img.setAttribute("src", "http://shewearsmanyhats.com/wp-content/uploads/2013/07/dipped-ice-cream-cones-7.jpg");
+                    break;
+                case "star":
+                    img.setAttribute("src", "https://upload.wikimedia.org/wikipedia/en/f/f4/Free_Blue_Star.jpg");
+                    break;
+                case "gingerbread_man":
+                    img.setAttribute("src", "http://s4.thingpic.com/images/Z2/aKbbAji33KH5xnoAYTf1NuZJ.png");
+                    break;
+                case "lollipop":
+                    img.setAttribute("src", "http://cdn.crossmap.com/images/2/22/22262.jpg");
+                    break;
+                case "popsicle":
+                    img.setAttribute("src", "http://www.raceyourneighbor.com/webstore/popsicle1.jpg");
+                    break;
+                case "chocolate_swirl":
+                    img.setAttribute("src", "http://cdn3.volusion.com/wpqef.uyhgx/v/vspfiles/photos/ISCCS300-2.jpg");
+                    break;
+            }
+            img.setAttribute("style", "width:100px;height:100px;");
+            document.getElementById('card_color_box').appendChild(img);
+        } else if (isDoubled) {
+            document.getElementById('card_color').innerHTML = "Card #" + (cur_index + 1) + "/" + cards.length + ": DOUBLE " + cardName;
+            document.getElementById('card_color_box').style.background = cardName;
+            document.getElementById('card_color_box_2').style.background = cardName;
+        } else {
+            document.getElementById('card_color').innerHTML = "Card #" + (cur_index + 1) + "/" + cards.length + ": " + cardName;
+            document.getElementById('card_color_box').style.background = cardName;
+            document.getElementById('card_color_box_2').style.background = "white";
+        }
+        cur_index++;
+    }
+</script>
 </body>
 </html>
