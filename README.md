@@ -1,2 +1,2 @@
 # CardPicker
-Picks cards for a board game
+After losing cards for our [CandyLand](http://candyland.com) game, and having the stack of remaining cards continually fall over during the game, we decided to whip this up.  It doesn't do much, just creates a deck of cards, and shuffles it, on the page loading.  Then the player draws cards.  If you want to shuffle, for now, just reload the page.  To run this, just have Django installed and `./manage.py runserver`.
