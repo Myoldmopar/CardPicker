@@ -23,7 +23,7 @@
 </div>
 </br>
 <div style="text-align:center;">
-    <button onClick='getCard()' style="font-size:30px;">Draw a Card!</button>
+    <button onClick='handleClick()' style="font-size:36px;">Draw a Card!</button>
 </div>
 <p style="text-align:center;">You can visit the Candy Land website by clicking <a href='http://candyland.com'
                                                                                   target="_blank">here</a>.</p>
@@ -86,6 +86,15 @@
         cards.push(["chocolate_swirl", false, true]);
         shuffle(cards);
     }
+    function handleClick() {
+        document.getElementById('card_color_box').style.background = "white";
+        document.getElementById('card_color_box_2').style.background = "white";
+        var first_color_box = document.getElementById('card_color_box')
+        if (first_color_box.hasChildNodes()) {
+            first_color_box.removeChild(first_color_box.childNodes[0])
+        }
+        window.setTimeout(getCard, 350);
+    }
     function getCard() {
         if (cur_index == cards.length) {
             cur_index = 0;
@@ -95,9 +104,6 @@
         var isDoubled = ourCard[1];
         var isSpecial = ourCard[2];
         var first_color_box = document.getElementById('card_color_box')
-        if (first_color_box.hasChildNodes()) {
-            first_color_box.removeChild(first_color_box.childNodes[0])
-        }
         if (isSpecial) {
             document.getElementById('card_color').innerHTML = "Card #" + (cur_index + 1) + "/" + cards.length + ": SPECIAL! " + cardName;
             document.getElementById('card_color_box').style.background = "white";
