@@ -23,7 +23,7 @@
 </div>
 </br>
 <div style="text-align:center;">
-    <button onClick='handleClick()' style="font-size:36px;">Draw a Card!</button>
+    <button id='button' onClick='handleClick()' style="font-size:36px;">Click here or press Space Bar to draw a card!</button>
 </div>
 <p style="text-align:center;">You can visit the Candy Land website by clicking <a href='http://candyland.com'
                                                                                   target="_blank">here</a>.</p>
@@ -84,7 +84,14 @@
         cards.push(["lollipop", false, true]);
         cards.push(["popsicle", false, true]);
         cards.push(["chocolate_swirl", false, true]);
-        shuffle(cards);
+        shuffle(cards)
+        // also set up the keystroke handler
+        var btn = document.getElementById("button");
+        document.onkeydown = function (e) {
+            if (e.keyCode == 32) {
+                btn.click();
+            }
+        };
     }
     function handleClick() {
         document.getElementById('card_color_box').style.background = "white";
